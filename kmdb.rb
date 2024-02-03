@@ -177,6 +177,12 @@ new_role ["character_name"]= "Rachel Dawes"
 new_role.save
 
 new_role = Role.new
+new_role["movie_id"] = batman_begins["id"]
+new_role ["actor_id"] = oldman["id"]
+new_role ["character_name"]= "Commissioner Gordon"
+new_role.save
+
+new_role = Role.new
 new_role["movie_id"] = dark_knight["id"]
 new_role ["actor_id"] = bale["id"]
 new_role ["character_name"]= "Bruce Wayne"
@@ -259,3 +265,10 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+roles = Role.all
+for role in roles
+   movie = Movie.find_by("id" => role["movie_id"])
+   actor = Actor.find_by("id" => role["actor_id"])
+   puts "#{movie["title"]} #{actor["name"]} #{role["character_name"]}"
+end 
