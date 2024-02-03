@@ -71,12 +71,52 @@
 # Use `Model.destroy_all` code.
 # TODO!
 
+Studio.destroy_all
+Movie.destroy_all
+Actor.destroy_all
+Role.destroy_all
+
 # Generate models and tables, according to the domain model.
 # TODO!
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+
+new_studio = Studio.new
+new_studio["name"] = "Warner Bros."
+new_studio.save
+
+new_movie = Movie.new
+new_movie["title"] = "Batman Begins"
+new_movie["year_released"] = 2005
+new_movie["rated"] = "PG-13"
+new_movie.save
+
+new_movie = Movie.new
+new_movie["title"] = "The Dark Knight"
+new_movie["year_released"] = 2008
+new_movie["rated"] = "PG-13"
+new_movie.save
+
+new_movie = Movie.new
+new_movie["title"] = "The Dark Knight Rises"
+new_movie["year_released"] = 2012
+new_movie["rated"] = "PG-13"
+new_movie.save
+
+batman_begins = Movie.find_by({"title" => "Batman Begins"})
+batam_begins_id=Studio.where({"studio_id" => batman_begins["id"]})
+
+
+new_actor = Actor.new
+new_actor["name"] = "Christian Bale"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["name"] = "Christain Bale"
+new_actor.save
+
 
 # Prints a header for the movies output
 puts "Movies"
