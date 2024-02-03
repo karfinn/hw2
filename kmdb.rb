@@ -83,38 +83,45 @@ Role.destroy_all
 # Do not use hard-coded foreign key IDs.
 # TODO!
 
-new_studio = Studio.new
-new_studio["name"] = "Warner Bros."
-new_studio.save
+warner = Studio.new
+warner["name"] = "Warner Bros."
+warner.save
 
 new_movie = Movie.new
 new_movie["title"] = "Batman Begins"
 new_movie["year_released"] = 2005
 new_movie["rated"] = "PG-13"
+new_movie["studio_id"]= warner["id"]
 new_movie.save
 
 new_movie = Movie.new
 new_movie["title"] = "The Dark Knight"
 new_movie["year_released"] = 2008
 new_movie["rated"] = "PG-13"
+new_movie["studio_id"]= warner["id"]
 new_movie.save
 
 new_movie = Movie.new
 new_movie["title"] = "The Dark Knight Rises"
 new_movie["year_released"] = 2012
 new_movie["rated"] = "PG-13"
+new_movie["studio_id"]= warner["id"]
 new_movie.save
-
-batman_begins = Movie.find_by({"title" => "Batman Begins"})
-batam_begins_id=Studio.where({"studio_id" => batman_begins["id"]})
-
 
 new_actor = Actor.new
 new_actor["name"] = "Christian Bale"
 new_actor.save
 
 new_actor = Actor.new
-new_actor["name"] = "Christain Bale"
+new_actor["name"] = "Michael Caine"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["name"] = "Liam Neeson"
+new_actor.save
+
+new_actor = Actor.new
+new_actor["name"] = "Katie Holmes"
 new_actor.save
 
 
@@ -125,6 +132,16 @@ puts ""
 
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
+
+
+
+
+movies = Movie.all
+for movie in movies
+    # get the studio name by creating a hash with the table with the foreign key we want to fetch
+    studio = Studio.find_by("id" => movie["studio_id"])
+    puts "#{movie["title"]} #{movie["year_released"]} #{movie["rated"]} #{studio["name"]}"
+end 
 
 # Prints a header for the cast output
 puts ""
