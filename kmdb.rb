@@ -239,7 +239,7 @@ new_role.save
 new_role = Role.new
 new_role["movie_id"] = dark_rises["id"]
 new_role ["actor_id"] = hathaway["id"]
-new_role ["character_name"]= "Seline Kyle"
+new_role ["character_name"]= "Selina Kyle"
 new_role.save
 
 # Prints a header for the movies output
